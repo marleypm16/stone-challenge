@@ -1,12 +1,23 @@
 "use client"
 import React, {useState} from 'react';
+import {ClientForm} from "@/app/_lib/clientForm";
 
-const Form = () => {
-    const [dolar,setDoalr] = useState(1)
-    const [taxa,setTaxa] = useState(0)
-    const [tipo,setTipo] = useState('')
+interface FormProps{
+    clientForm : ClientForm
+    onSubmit : (clientForm : ClientForm) => void
+}
+
+const Form = ({clientForm,onSubmit} : FormProps) => {
+    const { dolar: initialDolar, taxa: initialTaxa, tipo: initialTipo } = clientForm;
+    const [dolar,setDoalr] = useState(initialDolar)
+    const [taxa,setTaxa] = useState(initialTaxa)
+    const [tipo,setTipo] = useState(initialTipo)
+    const handleSubmit = (e :React.FormEvent) : void =>{
+        e.preventDefault()
+        onSubmit({dolar,taxa,tipo})
+    }
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="dolar">Dolar</label>
                 <input type="number" id="dolar" onChange={(e)=> setDoalr(Number(e.target.value))} value={dolar} name="name"/>
@@ -20,7 +31,7 @@ const Form = () => {
                 <input type="radio" id="cartao" name="tipo" onChange={e => setTipo(e.target.value)} value="cartao"/>
                 <label htmlFor="cartao">Cartão</label>
             </div>
-            <button>Converter</button>
+            <button type='submit'>Converter</button>
         </form>
     );
 };
