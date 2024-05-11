@@ -7,11 +7,10 @@ interface FormProps{
     onSubmit : (clientForm : ClientForm) => void
 }
 
-const Form = ({clientForm,onSubmit} : FormProps) => {
-    const { dolar: initialDolar, taxa: initialTaxa, tipo: initialTipo } = clientForm;
-    const [dolar,setDoalr] = useState(initialDolar)
-    const [taxa,setTaxa] = useState(initialTaxa)
-    const [tipo,setTipo] = useState(initialTipo)
+const Form = ({onSubmit} : FormProps) => {
+    const [dolar,setDoalr] = useState(1)
+    const [taxa,setTaxa] = useState(0)
+    const [tipo,setTipo] = useState('')
     const handleSubmit = (e :React.FormEvent) : void =>{
         e.preventDefault()
         onSubmit({dolar,taxa,tipo})
