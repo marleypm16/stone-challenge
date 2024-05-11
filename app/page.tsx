@@ -14,8 +14,11 @@ export default function Home() {
         setClientForm(undefined)
     }
     return (
-        <>
-            <Header />
+        <div className="px-6 py-7">
+            <div className='mb-5'>
+                <Header />
+
+            </div>
             {clientForm ? (
                 <>
                     <ConverterPage clientForm={clientForm} goBack={goBack} />
@@ -25,6 +28,6 @@ export default function Home() {
                     <Form clientForm={clientForm!} onSubmit={onSubmit} />
                 </>
             )}
-        </>
+        </div>
     );
 }
