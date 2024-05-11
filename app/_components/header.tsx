@@ -10,7 +10,7 @@ const Header = () => {
             <Image src="./Main Logo.svg" alt="" width={100} height={100} />
             <div>
                 <div>
-                    <p>{day}/{month}/{year} | {utcHora}:00 UTC</p>
+                    <p className="font-roboto font-medium text-header text-lg">{day}/{month}/{year} | {utcHora}:00 UTC</p>
                 </div>
                 <p>Dados de câmbio disponibilizados pela Morningstar.</p>
             </div>
