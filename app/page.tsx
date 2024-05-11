@@ -14,20 +14,25 @@ export default function Home() {
         setClientForm(undefined)
     }
     return (
-        <div className="px-6 py-7">
-            <div className='mb-5'>
-                <Header />
+        <>
+            <div className="pl-16 pt-16 font-roboto font-medium">
+                <div className='mb-8'>
+                    <Header/>
 
+                </div>
+                {clientForm ? (
+                    <>
+                        <ConverterPage clientForm={clientForm} goBack={goBack}/>
+                    </>
+                ) : (
+                    <>
+                        <Form clientForm={clientForm!} onSubmit={onSubmit}/>
+                    </>
+                )}
             </div>
-            {clientForm ? (
-                <>
-                    <ConverterPage clientForm={clientForm} goBack={goBack} />
-                </>
-            ) : (
-                <>
-                    <Form clientForm={clientForm!} onSubmit={onSubmit} />
-                </>
-            )}
-        </div>
+            <img className='absolute h-full top-0 right-0' src='./Mask.svg' alt='test'  />
+
+        </>
+
     );
 }
