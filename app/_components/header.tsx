@@ -6,7 +6,7 @@ const Header = () => {
     const year = new Date().getFullYear();
     const utcHora = new Date().getUTCHours();
     return (
-        <header className="flex items-center">
+        <header className="flex items-center gap-5">
             <Image src="./Main Logo.svg" alt="" width={100} height={100} />
             <div>
                 <div>
