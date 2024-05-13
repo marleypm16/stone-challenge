@@ -9,32 +9,32 @@ interface FormProps{
 }
 
 const Form = ({onSubmit} : FormProps) => {
-    const [dolar,setDolar] = useState(0)
-    const [taxa,setTaxa] = useState(0)
-    const [tipo,setTipo] = useState('')
+    const [dolarValue,setDolarValue] = useState<number>(0)
+    const [tax,setTax] = useState<number>(0)
+    const [type,setType] = useState<string>('')
     const handleSubmit = (e :React.FormEvent) : void =>{
         e.preventDefault()
-        onSubmit({dolar,taxa,tipo})
+        onSubmit({dolarValue, tax,type})
     }
     return (
         <form className='max-w-sm ' onSubmit={handleSubmit}>
             <div className="flex items-center gap-5 mb-6">
                 <div className="w-1/2">
                     <label className='block mb-2' htmlFor="dolar">Dolar</label>
-                    <InputNumber   mode="currency" currency="USD" locale="en-US"  minFractionDigits={2} className="p-4 outline-0 border shadow-input" id="dolar" onChange={(e) => setDolar(Number(e.value))} placeholder='0' required name="name"/>
+                    <InputNumber   mode="currency" currency="USD" locale="en-US"  minFractionDigits={2} className="p-4 outline-0 border shadow-input" id="dolar" onChange={(e) => setDolarValue(Number(e.value))} placeholder='$0.00' required name="name"/>
                 </div>
                 <div className="w-1/2">
                     <label className='block mb-2' htmlFor="taxa">Taxa do Estado</label>
-                    <InputNumber suffix="%"  className=" border p-4 outline-0 shadow-input" minFractionDigits={2}  id="taxa" onChange={(e) => setTaxa(Number(e.value))} placeholder='0' required name="name"/>
+                    <InputNumber suffix="%"  className=" border p-4 outline-0 shadow-input" minFractionDigits={2}  id="taxa" onChange={(e) => setTax(Number(e.value))} placeholder='0.00%' required name="name"/>
                 </div>
             </div>
             <div className="mb-6">
                 <h2 className="mb-2">Tipo de compra</h2>
                 <div className='flex items-center gap-4'>
-                    <input type="radio" id="dinheiro" name="tipo" onChange={e => setTipo(e.target.value)}
+                    <input type="radio" id="dinheiro" name="tipo" onChange={e => setType(e.target.value)}
                            value="dinheiro" required/>
                     <label htmlFor="dinheiro">Dinheiro</label>
-                    <input required className='' type="radio" id="cartao" name="tipo" onChange={e => setTipo(e.target.value)} value="cartao"/>
+                    <input required className='' type="radio" id="cartao" name="tipo" onChange={e => setType(e.target.value)} value="cartao"/>
                     <label htmlFor="cartao">Cartão</label>
 
                 </div>

@@ -1,5 +1,5 @@
 export interface ClientForm {
-    dolar: number;
-    taxa: number;
-    tipo: string;
+    dolarValue: number;
+    tax: number;
+    type: string;
 }

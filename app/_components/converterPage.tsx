@@ -10,21 +10,21 @@ interface ConverterPageProps{
     goBack : () => void
 }
 const ConverterPage =  ({clientForm,goBack} : ConverterPageProps) => {
-    const [cotacao,setCotacao] = useState()
-    const dolar = clientForm.dolar
-    const taxa = clientForm.taxa
-    const tipo = clientForm.tipo
+    const [quotation,setQuotation] = useState()
+    const dolarValue = clientForm.dolarValue
+    const tax = clientForm.tax
+    const type = clientForm.type
     useEffect(() => {
-        const fetchCotacao = async () => {
+        const fetchQuotation = async () => {
             try {
                 const data = await api();
-                setCotacao(data.bid);
+                setQuotation(data.bid);
             } catch (error) {
                 console.error('Erro ao buscar cotação:', error);
             }
         };
 
-        fetchCotacao();
+        fetchQuotation();
     }, []);
     const handleGoBack =  () : void => {
         goBack()
@@ -32,13 +32,13 @@ const ConverterPage =  ({clientForm,goBack} : ConverterPageProps) => {
 
     return (
         <div>
-            <Button className='p-4 bg-transparent text-black border shadow-goBackButton rounded-lg mb-5' onClick={handleGoBack}>  Voltar</Button>
+            <Button className='p-4 bg-transparent text-black border shadow-goBackButton rounded-lg mb-5' onClick={handleGoBack}>Voltar</Button>
             <div className="flex flex-col justify-center gap-4">
                 <h1 className='text-form font-bold text-xl '>O resultado do calculo é :</h1>
-                <h2 className='font-bold text-green-500 text-6xl'>{formatValue(calculateFinalValue(dolar, taxa, tipo, Number(cotacao)),'BRL')}</h2>
+                <h2 className='font-bold text-green-500 text-6xl'>{formatValue(calculateFinalValue(dolarValue, tax, type, Number(quotation)),'BRL')}</h2>
                 <div>
-                    <p className="text-header text-sm mb-2">Compra no {tipo} com taxa de {taxa}%</p>
-                    <p className="text-header text-sm">Cotação do dólar : {formatValue(cotacao!,'USD')}</p>
+                    <p className="text-header text-sm mb-2">Compra no {type} com taxa de {tax}%</p>
+                    <p className="text-header text-sm">Cotação do dólar : {formatValue(quotation!,'USD')}</p>
                 </div>
 
             </div>
